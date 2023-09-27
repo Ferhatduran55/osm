@@ -1,0 +1,11 @@
+{
+  "path": "plugins/",
+  "type": "manifest",
+  "manifest": [
+    { "src": "custom/style.css", "id": "customStyle", "type": "css" },
+    { "src": "leaflet/leaflet.css", "id": "leafletStyle", "type": "css" },
+    { "src": "jquery/jquery.min.js", "id": "jqueryScript", "type": "javascript" },
+    { "src": "custom/index.js", "id": "customScript", "type": "javascript" },
+    { "src": "leaflet/leaflet.js", "id": "leafletScript", "type": "javascript" }
+  ]
+}

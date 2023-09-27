@@ -1,0 +1,76 @@
+#map {
+    width: 100%;
+    height: 100%;
+}
+.leaflet-grab {
+    cursor: crosshair;
+}
+.options {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.options .rules {
+    margin-bottom: 10px;
+}
+.options .rules .rule-group {
+    display: flex;
+    -webkit-user-select: none;
+    margin-bottom: 5px;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.options .rules .rule-group label, .options .rules label {
+    user-select: none;
+    margin-right: 5px;
+}
+.options .rules .rule-group input, .options .rules input {
+    margin-right: 5px;
+}
+.actions {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.actions > div {
+    display: inline-block;
+    float: left
+}
+.actions .btn-group {
+    margin-bottom: 5px;
+}
+.actions .btn-group label {
+    margin-right: 5px;
+}
+.actions .btn-group input {
+    margin-right: 5px;
+}
+.btn-group .btn {
+    margin-right: 5px;
+}
+.btn-group .btn {
+    background-color: #ccc;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.btn-group .btn:hover {
+    background-color: #eee;
+}
+.btn-group .btn[data-selected="true"] {
+    background-color: #0f0;
+}
+.btn-group .btn[data-selected="true"]:hover {
+    background-color: #0f0;
+}
