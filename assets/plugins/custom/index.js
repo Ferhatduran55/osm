@@ -115,6 +115,282 @@ $(() => {
             rendered: false
         },
     }
+    
+
+    const toolsButtonOnClick = function (e) {
+        let tools = $('#tools .btn[data-tool]');
+        const isSelected = e.target.dataset.selected === 'true';
+        tools.attr('data-selected', 'false');
+        e.target.dataset.selected = isSelected ? 'false' : 'true';
+    }
+
+    const dom = {
+        options: {
+            tagname: 'div',
+            id: 'options',
+            class: 'options',
+            children: [
+                {
+                    tagname: 'div',
+                    class: 'rules',
+                    children: [
+                        {
+                            tagname: 'div',
+                            class: 'rule-group',
+                            children: [
+                                {
+                                    tagname: 'label',
+                                    for: 'onClickOpenPopup',
+                                    text: 'Open Popup on click'
+                                },
+                                {
+                                    tagname: 'input',
+                                    type: 'checkbox',
+                                    id: 'onClickOpenPopup',
+                                    name: 'rules',
+                                    checked: 'checked'
+                                }
+                            ]
+                        },
+                        {
+                            tagname: 'div',
+                            class: 'rule-group',
+                            children: [
+                                {
+                                    tagname: 'label',
+                                    for: 'onClickOpenTooltip',
+                                    text: 'Open Tooltip on click'
+                                },
+                                {
+                                    tagname: 'input',
+                                    type: 'checkbox',
+                                    id: 'onClickOpenTooltip',
+                                    name: 'rules',
+                                    checked: 'checked'
+                                }
+                            ]
+                        },
+                        {
+                            tagname: 'div',
+                            class: 'rule-group',
+                            children: [
+                                {
+                                    tagname: 'label',
+                                    for: 'fitToScreen',
+                                    text: 'Fit to screen'
+                                },
+                                {
+                                    tagname: 'input',
+                                    type: 'checkbox',
+                                    id: 'fitToScreen',
+                                    name: 'rules',
+                                    checked: 'checked'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        actions: {
+            tagname: 'div', 
+            id: 'actions', 
+            class: 'actions',
+            children: [
+                {
+                    tagname: 'div',
+                    id: 'tools',
+                    children: [
+                        {
+                            tagname: 'div',
+                            class: 'btn-group',
+                            children: [
+                                {
+                                    tagname: 'button',
+                                    class: 'btn', 
+                                    dataset: {
+                                        tool: 'polyline', 
+                                        selected: 'false'
+                                    },
+                                    text: 'Polyline',
+                                    onclick: toolsButtonOnClick
+                                }
+                            ]
+                        },
+                        {
+                            tagname: 'div',
+                            class: 'btn-group',
+                            children: [
+                                {
+                                    tagname: 'button',
+                                    class: 'btn', 
+                                    dataset: {
+                                        tool: 'polygon', 
+                                        selected: 'false'
+                                    },
+                                    text: 'Polygon',
+                                    onclick: toolsButtonOnClick
+                                }
+                            ]
+                        },
+                        {
+                            tagname: 'div',
+                            class: 'btn-group',
+                            children: [
+                                {
+                                    tagname: 'button',
+                                    class: 'btn', 
+                                    dataset: {
+                                        tool: 'rectangle', 
+                                        selected: 'false'
+                                    },
+                                    text: 'Rectangle',
+                                    onclick: toolsButtonOnClick
+                                }
+                            ]
+                        },
+                        {
+                            tagname: 'div',
+                            class: 'btn-group',
+                            children: [
+                                {
+                                    tagname: 'button',
+                                    class: 'btn', 
+                                    dataset: {
+                                        tool: 'marker', 
+                                        selected: 'false'
+                                    },
+                                    text: 'Marker',
+                                    onclick: toolsButtonOnClick
+                                }
+                            ]
+                        },
+                        {
+                            tagname: 'div',
+                            class: 'btn-group',
+                            children: [
+                                {
+                                    tagname: 'button',
+                                    class: 'btn', 
+                                    dataset: {
+                                        tool: 'circle', 
+                                        selected: 'false'
+                                    },
+                                    text: 'Circle',
+                                    onclick: toolsButtonOnClick
+                                },
+                                {
+                                    tagname: 'label',
+                                    for: 'circleRadius',
+                                    text: 'Circle Radius'
+                                },
+                                {
+                                    tagname: 'input',
+                                    type: 'number',
+                                    id: 'circleRadius',
+                                    name: 'circleRadius',
+                                    value: '200',
+                                    min: '0',
+                                    step: '50'
+                                }
+                            ]
+                        },
+                        {
+                            tagname: 'div',
+                            class: 'btn-group',
+                            children: [
+                                {
+                                    tagname: 'button',
+                                    class: 'btn',
+                                    dataset: {
+                                        tool: 'circleMarker',
+                                        selected: 'false'
+                                    },
+                                    text: 'Circle Marker',
+                                    onclick: toolsButtonOnClick
+                                },
+                                {
+                                    tagname: 'label',
+                                    for: 'circleMarkerRadius',
+                                    text: 'Circle Marker Radius'
+                                },
+                                {
+                                    tagname: 'input',
+                                    type: 'number',
+                                    id: 'circleMarkerRadius',
+                                    name: 'circleMarkerRadius',
+                                    value: '10',
+                                    min: '0',
+                                    step: '10'
+                                }
+                            ]
+                        },
+                    ]
+                }
+            ]
+        }
+    }
+
+    
+
+    function createElements(parent, elements) {
+        function applyAttributes(element, attributes) {
+          for (let attr in attributes) {
+            if (attr === 'tagname') continue;
+            if (attr === 'children') {
+              createElements(element, attributes[attr]);
+              continue;
+            }
+            if (attr === 'dataset') {
+              for (let data in attributes[attr]) {
+                element.dataset[data] = attributes[attr][data];
+              }
+              continue;
+            }
+            if (attr === 'text') {
+              element.innerHTML = attributes[attr];
+              continue;
+            }
+            if (attr === 'class') {
+              element.className = attributes[attr];
+              continue;
+            }
+            if (attr === 'style') {
+              element.style = attributes[attr];
+              continue;
+            }
+            if (attr === 'for') {
+              element.htmlFor = attributes[attr];
+              continue;
+            }
+            if (attr === 'onclick') {
+              element.onclick = attributes[attr];
+              continue;
+            }
+            if (attr === 'checked') {
+              element.checked = attributes[attr];
+              continue;
+            }
+            element[attr] = attributes[attr];
+          }
+        }
+      
+        if (elements.tagname) {
+          let el = document.createElement(elements.tagname);
+          applyAttributes(el, elements);
+          parent.appendChild(el);
+        } else {
+          for (let key in elements) {
+            let element = elements[key];
+            let el = document.createElement(element.tagname);
+            applyAttributes(el, element);
+            parent.appendChild(el);
+          }
+        }
+      }
+
+    createElements(document.querySelector('app interface'), dom);
+
     const baseLayers = {};
 
     function renderLayer(render = null) {
@@ -153,7 +429,6 @@ $(() => {
     const tooltip = L.tooltip();
     const control = L.control;
 
-
     const layerControl = control.layers(baseLayers).addTo(map);
     const scaleControl = control.scale().addTo(map);
     renderLayer();
@@ -164,10 +439,9 @@ $(() => {
         polygon: [],
         rectangle: [],
     };
-    let tools = $('.btn[data-tool]');
 
-    function onMapClick(e) {
-        let item = $('.btn[data-selected="true"]');
+    const onMapClick = function (e) {
+        let item = $('#tools .btn[data-selected="true"]');
         if (item.length === 0) {
             popup.setLatLng(e.latlng)
                 .setContent(`Please select any tool button for editing the map.`)
@@ -217,12 +491,6 @@ $(() => {
             return;
         }
     }
-
-    tools.click(function (e) {
-        const isSelected = e.target.dataset.selected === 'true';
-        tools.attr('data-selected', 'false');
-        e.target.dataset.selected = isSelected ? 'false' : 'true';
-    });
 
     $(document).keydown(function (event) {
         if (event.code === 'Enter') {
