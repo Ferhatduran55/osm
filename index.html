@@ -14,51 +14,9 @@
 <body>
 <app>
     <loader></loader>
-    <interface>
-        <div class="options">
-            <div class="rules">
-                <div class="rule-group">
-                    <label for="onClickOpenPopup">Click on map open popup</label>
-                    <input type="checkbox" id="onClickOpenPopup" name="rules" checked>
-                </div>
-                <div class="rule-group">
-                    <label for="onClickOpenTooltip">Click on map open tooltip</label>
-                    <input type="checkbox" id="onClickOpenTooltip" name="rules" checked>
-                </div>
-                <div class="rule-group">
-                    <label for="fitToScreen">Fit to screen when object is created</label>
-                    <input type="checkbox" id="fitToScreen" name="rules" checked>
-                </div>
-            </div>
-        </div>
-        <div class="actions">
-            <div id="tools">
-                <div class="btn-group">
-                    <button class="btn" data-tool="polyline" data-selected="false">Polyline</button>
-                </div>
-                <div class="btn-group">
-                    <button class="btn" data-tool="polygon" data-selected="false">Polygon</button>
-                </div>
-                <div class="btn-group">
-                    <button class="btn" data-tool="rectangle" data-selected="false">Rectangle</button>
-                </div>
-                <div class="btn-group">
-                    <button class="btn" data-tool="marker" data-selected="false">Marker</button>
-                </div>
-                <div class="btn-group">
-                    <button class="btn" data-tool="circle" data-selected="false">Circle</button>
-                    <label for="circleRadius">Circle Radius</label>
-                    <input type="number" id="circleRadius" name="circleRadius" value="200" min="0" step="50">
-                </div>
-                <div class="btn-group">
-                    <button class="btn" data-tool="circleMarker" data-selected="false">Circle Marker</button>
-                    <label for="circleMarkerRadius">Circle Marker Radius</label>
-                    <input type="number" id="circleMarkerRadius" name="circleMarkerRadius" value="10" min="0" step="10">
-                </div>
-            </div>
-        </div>
-    </interface>
+    <interface></interface>
     <section id="map"></section>
 </app>
+<script src="../index.js"></script>
 </body>
 </html>
