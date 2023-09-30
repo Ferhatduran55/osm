@@ -35,6 +35,7 @@ self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(cacheName).then((cache) => {
             return cache.addAll([
+                './assets/images/favicon.png',
                 './assets/json/manifest.json',
                 './assets/plugins/createjs/preloadjs.min.js',
                 './assets/plugins/custom/loader.js',
@@ -52,12 +53,17 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('fetch', function (event) {
-    if (event.request.cache === 'only-if-cached' && event.request.mode !== 'same-origin') return;
-
+    let { cache, mode, url } = event.request;
+    if (cache === 'only-if-cached' && mode !== 'same-origin') return;
+    
+    const requestUrl = new URL(url);
+    if (requestUrl.pathname.includes('openstreetmap')) return;
+    
     event.respondWith(
         cacheAndRespond({
             request: event.request,
-            fallbackUrl: './img/automation.png'
+            fallbackUrl: './index.html'
         })
     );
 });
+  
