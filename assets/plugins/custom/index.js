@@ -436,6 +436,12 @@ $(() => {
         layers: [baseLayers['OpenStreetMap']]
     }).setView([33.72434, 11.923562],3);
 
+    const savedLocation = localStorage.getItem('mapLocation');
+    if (savedLocation) {
+        const [lat, lng, zoom] = savedLocation.split(',').map(parseFloat);
+        map.setView([lat, lng], zoom);
+    }
+
     const popup = L.popup();
     const tooltip = L.tooltip();
     const control = L.control;
@@ -500,7 +506,7 @@ $(() => {
             }
             if ($('#onClickOpenPopup').prop('checked')) {
                 popup.setLatLng(e.latlng)
-                    .setContent(`${e.latlng.toString()}.`)
+                    .setContent(`Hello world!<br />This is a nice popup.`)
                     .openOn(map);
             }
             if ($('#onClickOpenTooltip').prop('checked')) {
@@ -512,6 +518,46 @@ $(() => {
         }
     }
 
+    const cursorCoordinates = L.control({ position: 'bottomright'});
+
+    cursorCoordinates.onAdd = function (map) {
+        this._div = L.DomUtil.create('div', 'leaflet-control-mouseposition');
+        this._div.onclick = function (e) {
+            const latlng = e.target.dataset.latlng;
+            if (latlng) {
+                const [lat, lng] = latlng.split(',');
+                const textToCopy = `${lat},${lng}`;
+
+                const tempInput = document.createElement('textarea');
+                tempInput.value = textToCopy;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);                
+            }
+        }
+        this.update();
+        return this._div;
+    };
+
+    cursorCoordinates.update = function (latlng) {
+        this._div.innerHTML = latlng ? `${latlng.lat.toFixed(4)}°N : ${latlng.lng.toFixed(4)}°E` : '';
+        this._div.dataset.latlng = latlng ? `${latlng.lat},${latlng.lng}` : '';
+    };
+
+    const onMapMouseMove = function (e) {
+        cursorCoordinates.update(e.latlng);
+    }
+    
+    const onMapMoveEnd = function (e) {
+        const center = map.getCenter();
+        const zoom = map.getZoom();
+        const locationString = `${center.lat.toFixed(6)},${center.lng.toFixed(6)},${zoom}`;
+        localStorage.setItem('mapLocation', locationString);
+    }
+
+    cursorCoordinates.addTo(map);
+    
     $(document).keydown(function (event) {
         if (event.code === 'Enter') {
             let item = $('.btn[data-selected="true"]');
@@ -552,6 +598,8 @@ $(() => {
     });
 
     map.on('click', onMapClick);
+    map.on('mousemove', onMapMouseMove);
+    map.on('moveend', onMapMoveEnd);
 
     const exports = {}
     exports.controls = {}
