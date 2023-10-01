@@ -297,7 +297,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	color: black;
 	}
 .leaflet-bar a,
-.leaflet-control-layers-toggle {
+.leaflet-control-layers-toggle,
+.custom-leaflet-control-toggle {
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
 	display: block;
@@ -350,53 +351,61 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 /* layers control */
 
-.leaflet-control-layers {
+.leaflet-control-layers, .custom-leaflet-control {
 	box-shadow: 0 1px 5px rgba(0,0,0,0.4);
 	background: #fff;
 	border-radius: 5px;
 	}
-.leaflet-control-layers-toggle {
-	background-image: url(plugins/leaflet/images/layers.png);
+.leaflet-control-layers-toggle, .custom-leaflet-control-toggle {
 	width: 36px;
 	height: 36px;
 	}
-.leaflet-retina .leaflet-control-layers-toggle {
-	background-image: url(plugins/leaflet/images/layers-2x.png);
+.leaflet-control-layers-toggle {
+	background-image: url(images/layer-group-solid.svg);
+}
+.leaflet-retina .leaflet-control-layers-toggle,
+.leaflet-retina .custom-leaflet-control-toggle {
 	background-size: 26px 26px;
 	}
-.leaflet-touch .leaflet-control-layers-toggle {
+.leaflet-retina .leaflet-control-layers-toggle {
+	background-image: url(images/layer-group-solid.svg);
+	}
+.leaflet-touch .leaflet-control-layers-toggle,
+.leaflet-touch .custom-leaflet-control-toggle {
 	width: 44px;
 	height: 44px;
 	}
 .leaflet-control-layers .leaflet-control-layers-list,
-.leaflet-control-layers-expanded .leaflet-control-layers-toggle {
+.leaflet-control-layers-expanded .leaflet-control-layers-toggle,
+.custom-leaflet-control .custom-leaflet-control-list,
+.custom-leaflet-control-expanded .custom-leaflet-control-toggle {
 	display: none;
 	}
-.leaflet-control-layers-expanded .leaflet-control-layers-list {
+.leaflet-control-layers-expanded .leaflet-control-layers-list, .custom-leaflet-control-expanded .custom-leaflet-control-list {
 	display: block;
 	position: relative;
 	}
-.leaflet-control-layers-expanded {
+.leaflet-control-layers-expanded, .custom-leaflet-control-expanded {
 	padding: 6px 10px 6px 6px;
 	color: #333;
 	background: #fff;
 	}
-.leaflet-control-layers-scrollbar {
+.leaflet-control-layers-scrollbar, .custom-leaflet-control-scrollbar {
 	overflow-y: scroll;
 	overflow-x: hidden;
 	padding-right: 5px;
 	}
-.leaflet-control-layers-selector {
+.leaflet-control-layers-selector, .custom-leaflet-control-selector {
 	margin-top: 2px;
 	position: relative;
 	top: 1px;
 	}
-.leaflet-control-layers label {
+.leaflet-control-layers label, .custom-leaflet-control label {
 	display: block;
 	font-size: 13px;
 	font-size: 1.08333em;
 	}
-.leaflet-control-layers-separator {
+.leaflet-control-layers-separator, .custom-leaflet-control-separator {
 	height: 0;
 	border-top: 1px solid #ddd;
 	margin: 5px -10px 5px -6px;
@@ -462,10 +471,12 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 .leaflet-touch .leaflet-control-attribution,
 .leaflet-touch .leaflet-control-layers,
+.leaflet-touch .custom-leaflet-control,
 .leaflet-touch .leaflet-bar {
 	box-shadow: none;
 	}
 .leaflet-touch .leaflet-control-layers,
+.leaflet-touch .custom-leaflet-control,
 .leaflet-touch .leaflet-bar {
 	border: 2px solid rgba(0,0,0,0.2);
 	background-clip: padding-box;
@@ -558,6 +569,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 .leaflet-oldie .leaflet-control-zoom,
 .leaflet-oldie .leaflet-control-layers,
+.leaflet-oldie .custom-leaflet-control,
 .leaflet-oldie .leaflet-popup-content-wrapper,
 .leaflet-oldie .leaflet-popup-tip {
 	border: 1px solid #999;

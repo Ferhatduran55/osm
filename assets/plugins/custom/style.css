@@ -5,58 +5,30 @@
 .leaflet-grab {
     cursor: crosshair;
 }
-.options {
-    position: absolute;
-    bottom: 20px;
-    right: 0;
-    z-index: 1000;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+#options .custom-leaflet-control-toggle {
+    background-image: url(images/gear-fill.svg);
 }
-.options .rules {
-    margin-bottom: 10px;
+#actions .custom-leaflet-control-toggle {
+    background-image: url(images/gavel-solid.svg);
 }
-.options .rules .rule-group {
+.custom-leaflet-control-base {}
+
+#options .rules .rule-group {
     display: flex;
     -webkit-user-select: none;
-    margin-bottom: 5px;
     justify-content: space-between;
     flex-direction: row;
 }
-.options .rules .rule-group label, .options .rules label {
+#options .rules .rule-group label, #options .rules label {
     user-select: none;
     margin-right: 5px;
 }
-.options .rules .rule-group input, .options .rules input {
-    margin-right: 5px;
-}
-.actions {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 1000;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-.actions > div {
-    display: inline-block;
-    float: left
-}
-.actions .btn-group {
+
+#actions .btn-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     margin-bottom: 5px;
-}
-.actions .btn-group label {
-    margin-right: 5px;
-}
-.actions .btn-group input {
-    margin-right: 5px;
-}
-.btn-group .btn {
-    margin-right: 5px;
 }
 .btn-group .btn {
     background-color: #ccc;
