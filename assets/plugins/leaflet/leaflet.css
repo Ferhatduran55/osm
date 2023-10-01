@@ -173,6 +173,28 @@
 	margin-right: 10px;
 	}
 
+	.leaflet-bottom.leaflet-left>.leaflet-control-scale {
+		background: #fff;
+		border: 2px solid rgba(0,0,0,.2);
+		border-radius: 5px;
+		float: left;
+		margin: 10px;
+		bottom: 16px;
+		padding: 10px
+	}
+	
+	.leaflet-bottom.leaflet-right>.leaflet-control-mouseposition {
+		background: #fff;
+		border: 2px solid rgba(0,0,0,.2);
+		border-radius: 5px;
+		float: left;
+		margin: 10px;
+		float: right;
+		padding: 5px 10px;
+		user-select: none;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+	}
 
 /* zoom and fade animations */
 
@@ -386,9 +408,11 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	position: relative;
 	}
 .leaflet-control-layers-expanded, .custom-leaflet-control-expanded {
-	padding: 6px 10px 6px 6px;
+	padding: 6px;
 	color: #333;
-	background: #fff;
+	background: rgba(255, 255, 255, .8) !important;
+	backdrop-filter: blur(64px) !important;
+    -webkit-backdrop-filter: blur(64px) !important;
 	}
 .leaflet-control-layers-scrollbar, .custom-leaflet-control-scrollbar {
 	overflow-y: scroll;
@@ -477,12 +501,33 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	}
 .leaflet-touch .leaflet-control-layers,
 .leaflet-touch .custom-leaflet-control,
-.leaflet-touch .leaflet-bar {
+.leaflet-touch .leaflet-bar a {
 	border: 2px solid rgba(0,0,0,0.2);
 	background-clip: padding-box;
+	background: rgba(255, 255, 255, .4);
+	box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
 	}
 
-
+	.leaflet-touch .leaflet-bar a{
+	background: rgba(255, 255, 255, .6);
+	box-shadow: none !important;
+}
+.leaflet-touch .leaflet-control-zoom-in {
+	border-bottom: 0 !important;
+}
+.leaflet-touch .leaflet-control-zoom-out {
+	border-top: 0 !important;
+}
+:is(.leaflet-bottom):is(.leaflet-left,.leaflet-right) :is(.leaflet-control-mouseposition,.leaflet-control-scale) {
+	border: 2px solid rgba(0,0,0,0.2);
+	background-clip: padding-box;
+	background: rgba(255, 255, 255, .8);
+	box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+}
 /* popup */
 
 .leaflet-popup {
